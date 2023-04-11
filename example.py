@@ -9,6 +9,8 @@ import fire
 import time
 import json
 
+from pdb import set_trace as st
+
 from pathlib import Path
 
 from fairscale.nn.model_parallel.initialize import initialize_model_parallel
@@ -39,6 +41,7 @@ def load(
 ) -> LLaMA:
     start_time = time.time()
     checkpoints = sorted(Path(ckpt_dir).glob("*.pth"))
+    st()
     assert world_size == len(
         checkpoints
     ), f"Loading a checkpoint for MP={len(checkpoints)} but world size is {world_size}"
